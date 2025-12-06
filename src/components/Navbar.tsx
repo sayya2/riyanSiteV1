@@ -3,6 +3,7 @@ import { ChevronRightCircle,Facebook,Instagram,Twitter } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 
 interface MenuItem {
@@ -22,6 +23,8 @@ const menuItems: MenuItem[] = [
 export default function Navbar() {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 100);
@@ -30,13 +33,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const borderColor = isSticky ? "border-gray-200" : "border-white/30";
+  const borderColor = isSticky ? "border-gray-200" : "border-red-700/0";
   const textColor = isSticky ? "text-gray-900" : "text-white";
+  const baseBg =
+    isHome && !isSticky
+      ? "bg-transparent"
+      : "bg-gradient-to-r from-[#7a1c1a] via-[#7a1c1a] to-[#9b2c28]";
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 border-b ${borderColor} transition-all duration-300 ${
-        isSticky ? "bg-white shadow-md" : "bg-transparent"
+        isSticky ? "bg-white shadow-md" : baseBg
       }`}
     >
       <div className="container mx-auto px-4">
@@ -80,22 +87,22 @@ export default function Navbar() {
           {/* Contact Panel Toggle */}
           <button
             onClick={() => setIsPanelOpen(true)}
-            className="flex flex-col items-center justify-center w-11 h-11 space-y-1.5 rounded-full border border-transparent hover:border-white/40 hover:bg-white/10 transition-colors"
+            className="flex flex-col items-center justify-center w-11 h-10 space-y-1.5 rounded-full border border-transparent hover:border-white/40 hover:bg-white/10 transition-colors"
             aria-label="Open contact panel"
             aria-expanded={isPanelOpen}
           >
             <span
-              className={`block w-6 h-0.5 transition-all ${
+              className={`block w-4 h-0.5 transition-all ${
                 isSticky ? "bg-gray-900" : "bg-white"
               }`}
             />
             <span
-              className={`block w-6 h-0.5 transition-all ${
+              className={`block w-4 h-0.5 transition-all ${
                 isSticky ? "bg-gray-900" : "bg-white"
               }`}
             />
             <span
-              className={`block w-6 h-0.5 transition-all ${
+              className={`block w-4 h-0.5 transition-all ${
                 isSticky ? "bg-gray-900" : "bg-white"
               }`}
             />

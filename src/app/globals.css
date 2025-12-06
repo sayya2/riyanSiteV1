@@ -23,7 +23,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-roboto-condensed), "Roboto Condensed", var(--font-roboto), sans-serif;
   font-weight: 700;
-  color: #1f2937;
+  /* color: #1f2937; */
 }
 
 h1 {
@@ -80,15 +80,28 @@ h6 {
 }
 
 /* Vertical gallery scroll */
-.animate-vertical-scroll {
-  animation: vertical-scroll 28s linear infinite;
+.animate-vertical-up {
+  animation: vertical-up 80s linear infinite;
 }
 
-@keyframes vertical-scroll {
+.animate-vertical-down {
+  animation: vertical-down 90s linear infinite;
+}
+
+@keyframes vertical-up {
   0% {
     transform: translateY(0);
   }
   100% {
     transform: translateY(-50%);
+  }
+}
+
+@keyframes vertical-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
