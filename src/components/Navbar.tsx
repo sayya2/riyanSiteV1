@@ -1,10 +1,15 @@
 "use client";
-import { ChevronRightCircle,Facebook,Instagram,Twitter } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRightCircle,
+  Facebook,
+  Instagram,
+  Twitter,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
 
 interface MenuItem {
   id: number;
@@ -16,12 +21,23 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   { id: 1, title: "Home", url: "/" },
   { id: 2, title: "Projects", url: "/projects" },
-  { id: 3, title: "Services", url: "/services" },
-  { id: 4, title: "Firm", url: "/firm" },
+  { id: 3, title: "News", url: "/news" },
+  {
+    id: 4,
+    title: "Firm",
+    url: "/firm",
+    children: [
+      { id: 41, title: "About", url: "/firm/about" },
+      { id: 42, title: "Career", url: "/firm/career" },
+      { id: 43, title: "Internships", url: "/firm/career/internships" },
+      { id: 44, title: "Contact", url: "/firm/contact" },
+    ],
+  },
 ];
 
 export default function Navbar() {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [isFirmOpen, setIsFirmOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -32,6 +48,10 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    setIsFirmOpen(false);
+  }, [pathname]);
 
   const borderColor = isSticky ? "border-gray-200" : "border-red-700/0";
   const textColor = isSticky ? "text-gray-900" : "text-white";
@@ -46,7 +66,7 @@ export default function Navbar() {
         isSticky ? "bg-white shadow-md" : baseBg
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-12 ">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex ">
@@ -68,21 +88,78 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {menuItems.map((item) => (
-              <Link
-                key={item.id}
-                href={item.url}
-                className={`text-sm font-medium transition-colors ${
-                  isSticky
-                    ? "text-gray-900 hover:text-primary"
-                    : "text-white hover:text-white/80"
-                }`}
-              >
-                {item.title}
-              </Link>
-            ))}
-          </nav>
+          <div
+            className="hidden lg:block relative"
+            onMouseLeave={() => setIsFirmOpen(false)}
+          >
+            <nav className="flex items-center space-x-8">
+              {menuItems.map((item) =>
+                item.children ? (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setIsFirmOpen((prev) => !prev)}
+                    onMouseEnter={() => setIsFirmOpen(true)}
+                    onFocus={() => setIsFirmOpen(true)}
+                    className={`group inline-flex items-center text-sm font-medium transition-colors ${
+                      isSticky
+                        ? "text-gray-900 hover:text-primary"
+                        : "text-white hover:text-white/80"
+                    }`}
+                    aria-expanded={isFirmOpen}
+                  >
+                    {item.title}
+                    <ChevronDown
+                      className={`ml-1 h-4 w-4 transition-transform ${
+                        isFirmOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                ) : (
+                  <Link
+                    key={item.id}
+                    href={item.url}
+                    className={`text-sm font-medium transition-colors ${
+                      isSticky
+                        ? "text-gray-900 hover:text-primary"
+                        : "text-white hover:text-white/80"
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
+                )
+              )}
+            </nav>
+
+            <div
+              className={`absolute left-0 top-full pt-3 transition-all duration-200 ${
+                isFirmOpen
+                  ? "opacity-100 translate-y-0 pointer-events-auto"
+                  : "opacity-0 -translate-y-2 pointer-events-none"
+              }`}
+              style={{ zIndex: 60 }}
+            >
+              <div className="w-64 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+                <div className="flex flex-col divide-y divide-gray-100">
+                  {menuItems
+                    .find((m) => m.children)
+                    ?.children?.map((child) => (
+                      <Link
+                        key={child.id}
+                        href={child.url}
+                        className="px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+                      >
+                        <p className="text-sm font-semibold text-gray-900">{child.title}</p>
+                        <p className="text-xs text-gray-600">
+                          Learn more about {child.title.toLowerCase()} at Riyan.
+                        </p>
+                      </Link>
+                    ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
 
           {/* Contact Panel Toggle */}
           <button
@@ -181,7 +258,7 @@ export default function Navbar() {
                     +960 331 5049
                   </a>
                 </div>
-                <div >
+                <div>
                   <p className="text-xs uppercase tracking-wide text-gray-500 mb-2">
                     On Social Media
                   </p>
@@ -190,21 +267,19 @@ export default function Navbar() {
                       href="#"
                       className="text-gray-700 hover:text-primary font-medium"
                     >
-                       <Facebook />
-                      
+                      <Facebook />
                     </a>
                     <a
                       href="#"
                       className="text-gray-700 hover:text-primary font-medium"
                     >
-                     
-                     <Twitter/>
+                      <Twitter />
                     </a>
                     <a
                       href="#"
                       className="text-gray-700 hover:text-primary font-medium"
                     >
-                       <Instagram />
+                      <Instagram />
                     </a>
                   </div>
                 </div>
@@ -228,9 +303,8 @@ export default function Navbar() {
                 </div>
               </div> */}
               <button className=" right-4 top-20 text-xs tracking-[0.25em] uppercase text-gray-300 h-16 w-60 bg-primary flex items-center justify-center hover:bg-primary-dark transition-colors rounded-md shadow-md">
-                Get in Touch 
-                 <ChevronRightCircle className="ml-3 h-7 w-7 animate-wiggle-right" />
-
+                Get in Touch
+                <ChevronRightCircle className="ml-3 h-7 w-7 animate-wiggle-right" />
               </button>
             </div>
           </div>

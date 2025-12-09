@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(mysql:*)",
+      "Bash(php:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(sc query:*)",
+      "Bash(dir \"D:\\Xaamp\\mysql\\data\\*.err\" /b)",
+      "Bash(node:*)",
+      "Bash(npx tsc:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -134,7 +134,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white ml-[10%] mr-[10%]">
       <div className="relative  min-h-lvh md:h-[420px] w-full overflow-hidden">
         <Image
           src={img}

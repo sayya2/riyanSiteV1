@@ -1,11 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  getProjectCategories,
-  getProjectServices,
-  getProjects,
-} from "@/lib/db";
-import FiltersBar from "@/components/FiltersBar";
+import { getNewsCategories, getNewsPosts } from "@/lib/db";
+import FiltersBarNews from "@/components/news/FiltersBarNews";
 
 const fallbackImg =
   "http://localhost/riyansite/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
@@ -17,12 +13,14 @@ function stripHtml(input: string) {
     .trim();
 }
 
-export default async function ProjectsPage({
+type SearchParams =
+  | Record<string, string | string[] | undefined>
+  | Promise<Record<string, string | string[] | undefined>>;
+
+export default async function NewsPage({
   searchParams,
 }: {
-  searchParams?:
-    | Promise<Record<string, string | string[] | undefined>>
-    | Record<string, string | string[] | undefined>;
+  searchParams?: SearchParams;
 }) {
   const resolvedParams =
     searchParams && typeof (searchParams as Promise<any>).then === "function"
@@ -33,40 +31,36 @@ export default async function ProjectsPage({
 
   const category =
     typeof resolvedParams?.category === "string" ? resolvedParams.category : "";
-  const service =
-    typeof resolvedParams?.service === "string" ? resolvedParams.service : "";
   const search = typeof resolvedParams?.q === "string" ? resolvedParams.q : "";
   const perPage =
     typeof resolvedParams?.perPage === "string"
       ? Number(resolvedParams.perPage)
-      : 24;
-  const limit = [20, 40, 60, 100].includes(perPage) ? perPage : 24;
+      : 12;
+  const limit = [12, 24, 36, 48].includes(perPage) ? perPage : 12;
 
-  const [categories, services, projects] = await Promise.all([
-    getProjectCategories(),
-    getProjectServices(),
-    getProjects({
+  const [categories, articles] = await Promise.all([
+    getNewsCategories(),
+    getNewsPosts({
       categorySlug: category || undefined,
-      serviceSlug: service || undefined,
       search: search || undefined,
       limit,
     }),
   ]);
 
   if (process.env.NODE_ENV !== "production") {
-    console.log("[ProjectsPage] filters", { category, service, search, limit });
+    console.log("[NewsPage] filters", { category, search, limit });
     console.log(
-      "[ProjectsPage] projects sample",
-      projects.slice(0, 3).map((p) => ({
-        ID: p.ID,
-        slug: p.post_name,
-        title: p.post_title,
-        categories: p.categories,
-        services: p.services,
+      "[NewsPage] articles sample",
+      articles.slice(0, 3).map((a) => ({
+        ID: a.ID,
+        slug: a.post_name,
+        title: a.post_title,
+        categories: a.categories,
       })),
       "total",
-      projects.length
+      articles.length
     );
+    console.log("[NewsPage] categories", categories);
   }
 
   return (
@@ -75,45 +69,41 @@ export default async function ProjectsPage({
         <div className="flex flex-col gap-6">
           <div>
             <h1 className="text-4xl md:text-5xl font-semibold text-gray-900">
-              Projects
+              News &amp; Updates
             </h1>
             <p className="text-gray-700 mt-2">
-              Browse our portfolio across buildings, resorts, infrastructure,
-              planning, and more.
+              Stay up to date with announcements, milestones, and insights from
+              Riyan.
             </p>
           </div>
-          <FiltersBar
+
+          <FiltersBarNews
             categories={categories}
-            services={services}
             selectedCategory={category}
-            selectedService={service}
             search={search}
             perPage={limit}
           />
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {projects.map((project) => {
-            const href = project.post_name
-              ? `/projects/${project.post_name}`
-              : "#";
-            const categoriesText = (project.categories || []).join(", ");
-            const servicesText = (project.services || []).join(", ");
+          {articles.map((article) => {
+            const href = article.post_name ? `/news/${article.post_name}` : "#";
+            const categoriesText = (article.categories || []).join(", ");
             const excerpt =
-              project.post_excerpt && project.post_excerpt.trim().length > 0
-                ? stripHtml(project.post_excerpt)
-                : stripHtml(project.post_content || "").slice(0, 140);
-            const img = project.thumbnail_url || fallbackImg;
+              article.post_excerpt && article.post_excerpt.trim().length > 0
+                ? stripHtml(article.post_excerpt)
+                : stripHtml(article.post_content || "").slice(0, 140);
+            const img = article.thumbnail_url || fallbackImg;
 
             return (
               <Link
-                key={project.ID}
+                key={article.ID}
                 href={href}
                 className="group relative block overflow-hidden rounded-xl h-72 md:h-80 bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300"
               >
                 <Image
                   src={img}
-                  alt={project.post_title}
+                  alt={article.post_title}
                   fill
                   sizes="(min-width:1024px) 33vw, 100vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -122,10 +112,10 @@ export default async function ProjectsPage({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-5 space-y-2">
                   <p className="text-xs uppercase tracking-widest text-white/80 font-semibold">
-                    {categoriesText || servicesText || "Project"}
+                    {categoriesText || "News"}
                   </p>
                   <h3 className="text-xl font-semibold text-white drop-shadow-sm">
-                    {project.post_title}
+                    {article.post_title}
                   </h3>
                   <p className="text-sm text-white/80 leading-relaxed line-clamp-2">
                     {excerpt}

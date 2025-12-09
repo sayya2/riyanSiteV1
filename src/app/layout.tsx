@@ -38,7 +38,7 @@ export default function RootLayout({
         className={`${roboto.variable} ${robotoCondensed.variable} ${figtree.variable} antialiased`}
       >
         <Navbar />
-        {children}
+        <div className="content-gutter">{children}</div>
         <Footer />
       </body>
     </html>

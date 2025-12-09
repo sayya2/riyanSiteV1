@@ -46,7 +46,7 @@ const HeroSliderClient = ({ slides }: Props) => {
     setActiveIndex((prev) => (prev + delta + preparedSlides.length) % preparedSlides.length);
 
   return (
-    <section className="relative isolate h-[80vh] md:h-screen overflow-hidden bg-secondary text-white">
+    <section className="full-bleed relative isolate h-[80vh] md:h-screen overflow-hidden bg-secondary text-white">
       <div className="absolute inset-0">
         {preparedSlides.map((slide, idx) => (
           <div
@@ -70,7 +70,7 @@ const HeroSliderClient = ({ slides }: Props) => {
       </div>
 
       <div className="relative z-10 h-full flex items-end">
-        <div className="container mx-auto px-4 pb-12 md:pb-20">
+        <div className="container mx-auto px-16 pb-12 md:pb-20">
           <div className="max-w-4xl space-y-4 md:space-y-6 drop-shadow-xl">
             <p className="text-xs uppercase tracking-[0.35em] text-white/70">Riyan Pvt Ltd</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">

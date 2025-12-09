@@ -31,18 +31,7 @@ const Footer = () => {
             Integrated solutions in design, engineering, project management, and research tailored
             for the Maldives and beyond.
           </p>
-          <div className="flex flex-wrap gap-4 pt-2">
-            {isoBadges.map((src, idx) => (
-              <div key={`intro-${idx}`} className="h-12 w-12">
-                <img
-                  src={src}
-                  alt="Certification badge"
-                  className="h-full w-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+          
         </div>
 
         <div>
@@ -66,7 +55,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-wrap gap-3">
               {isoBadges.map((src, idx) => (
-                <div key={`aside-${idx}`} className="h-12 w-12">
+                <div key={`aside-${idx}`} className="h-22 w-22">
                   <img
                     src={src}
                     alt="Certification badge"
