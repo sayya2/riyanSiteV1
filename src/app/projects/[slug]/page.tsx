@@ -6,7 +6,7 @@ import { Building2, CalendarClock, MapPin } from "lucide-react";
 import { getAdjacentProjects, getProjectBySlug } from "@/lib/db";
 
 const fallbackImg =
-  "http://beta.riyan.com.mv/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+  "/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
 
 const contentShell = "w-full mx-auto px-[10%]";
 

@@ -9,8 +9,8 @@ const navLinks = [
 ];
 
 const isoBadges = [
-  "http://beta.riyan.com.mv/wp-content/uploads/2021/05/ISO-CERTIFIED-LOGO1.png",
-  "http://beta.riyan.com.mv/wp-content/uploads/2021/05/ISO-CERTIFIED-LOGO1.png",
+  "/wp-content/uploads/2021/05/ISO-CERTIFIED-LOGO1.png",
+  "/wp-content/uploads/2021/05/ISO-CERTIFIED-LOGO1.png",
 ];
 
 const Footer = () => {
@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="space-y-4">
           <div className="relative h-12 w-40">
             <Image
-              src="http://beta.riyan.com.mv/wp-content/uploads/2021/06/lg60wn.png"
+              src="/wp-content/uploads/2021/06/lg60wn.png"
               alt="Riyan"
               fill
               className="object-contain"

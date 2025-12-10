@@ -10,12 +10,12 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
       },
       {
-        protocol: 'http',
-        hostname: 'beta.riyan.com.mv',
+        protocol: 'https',
+        hostname: 'riyan.com.mv',
       },
       {
-        protocol: 'https',
-        hostname: 'beta.riyan.com.mv',
+        protocol: 'http',
+        hostname: 'riyan.com.mv',
       },
       {
         protocol: 'https',

@@ -4,7 +4,7 @@ import PageHero from "@/components/PageHero";
 import { getAdjacentNews, getNewsBySlug } from "@/lib/db";
 
 const fallbackImg =
-  "http://beta.riyan.com.mv/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+  "/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
 
 const stripHtml = (input: string) =>
   input

@@ -59,7 +59,7 @@ export default function ContactPage() {
         title="Let's build places that endure."
         eyebrow="Contact"
         description="Dedicated design, engineering, and research teams based in the Maldives, ready to partner on your next project."
-        imageUrl="http://beta.riyan.com.mv/wp-content/uploads/2015/05/13-1600x900-1.jpg"
+        imageUrl="/wp-content/uploads/2015/05/13-1600x900-1.jpg"
         heightClass="min-h-[60vh] md:min-h-[80vh]"
       />
 

@@ -85,7 +85,7 @@ export default async function InternshipsPage() {
         title={title}
         eyebrow="Career Opportunities"
         description={description}
-        imageUrl="http://beta.riyan.com.mv/wp-content/uploads/2025/05/5h-floor-Multipurpose-room_1.png"
+        imageUrl="/wp-content/uploads/2025/05/5h-floor-Multipurpose-room_1.png"
         heightClass="min-h-[60vh] md:min-h-[80vh]"
       />
 

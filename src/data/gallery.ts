@@ -1,6 +1,6 @@
 // Public URLs for the About gallery carousel.
 // Using absolute URLs so the Next.js app can fetch from the local WP uploads folder.
-const base = "http://beta.riyan.com.mv/wp-content/uploads/about_gallery";
+const base = "/wp-content/uploads/about_gallery";
 
 export const aboutGalleryImages: string[] = [
   `${base}/20220906025817_IMG_2454-1-1.jpg`,

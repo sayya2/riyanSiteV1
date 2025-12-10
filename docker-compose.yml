@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   mariadb:
@@ -38,6 +37,9 @@ services:
       - DB_PASSWORD=riyan_password
       - DB_NAME=riyan_nextjs
       - DB_PORT=3306
+      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+    volumes:
+      - ./wp-content:/app/public/wp-content
     depends_on:
       mariadb:
         condition: service_healthy

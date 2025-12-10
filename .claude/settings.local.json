@@ -33,7 +33,21 @@
       "Bash(git branch:*)",
       "Bash(xargs:*)",
       "Bash(git count-objects:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(find:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker-compose down:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(timeout 10 tail:*)",
+      "Bash(if [ -d \"D:/VIPERTIK/Riayn PVT LTD/RiyanSite/riyan/wp-content/uploads/2020\" ])",
+      "Bash(then echo \"Images found!\")",
+      "Bash(else echo \"No image files found. You need to copy wp-content/uploads from your old server.\")",
+      "Bash(fi)",
+      "Bash(timeout 20 tail:*)",
+      "Bash(timeout 30 tail:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(timeout 60 tail:*)"
     ],
     "deny": [],
     "ask": []

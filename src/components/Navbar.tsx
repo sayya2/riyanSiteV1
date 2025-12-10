@@ -75,8 +75,8 @@ export default function Navbar() {
                 <Image
                   src={
                     isSticky
-                      ? "http://beta.riyan.com.mv/wp-content/uploads/2021/06/lg60n.png"
-                      : "http://beta.riyan.com.mv/wp-content/uploads/2021/06/lg60wn.png"
+                      ? "/wp-content/uploads/2021/06/lg60n.png"
+                      : "/wp-content/uploads/2021/06/lg60wn.png"
                   }
                   alt="Riyan"
                   fill

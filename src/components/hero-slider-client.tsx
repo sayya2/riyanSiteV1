@@ -14,7 +14,7 @@ const fallbackSlide: HeroSlide = {
   title: "Integrated Solutions.",
   description:
     "Design, engineering, project management, and research expertise from a Maldives-based team.",
-  imageUrl: "http://beta.riyan.com.mv/wp-content/uploads/2022/06/hd-1800x900-1.png",
+  imageUrl: "/wp-content/uploads/2022/06/hd-1800x900-1.png",
 };
 
 const HeroSliderClient = ({ slides }: Props) => {

@@ -10,27 +10,27 @@ export const keySectorsIntro =
 export const keySectors: KeySector[] = [
   {
     title: "Buildings",
-    image: "http://beta.riyan.com.mv/wp-content/uploads/2018/12/IAS-FINAL-1024x568-1.jpg",
+    image: "/wp-content/uploads/2018/12/IAS-FINAL-1024x568-1.jpg",
     href: "#",
   },
   {
     title: "Resorts",
-    image: "http://beta.riyan.com.mv/wp-content/uploads/2009/01/Pic-13-Park-Hyatt-rotated.jpg",
+    image: "/wp-content/uploads/2009/01/Pic-13-Park-Hyatt-rotated.jpg",
     href: "#",
   },
   {
     title: "Infrastructure",
-    image: "http://beta.riyan.com.mv/wp-content/uploads/2007/02/mpl.jpg",
+    image: "/wp-content/uploads/2007/02/mpl.jpg",
     href: "#",
   },
   {
     title: "Urban Planning",
-    image: "http://beta.riyan.com.mv/wp-content/uploads/2021/09/bodufolhadhoo-LUP-1.jpg",
+    image: "/wp-content/uploads/2021/09/bodufolhadhoo-LUP-1.jpg",
     href: "#",
   },
   {
     title: "Research",
-    image: "https://beta.riyan.com.mv/wp-content/uploads/2022/08/IMG20210407113813-1800x900-1.jpg",
+    image: "/wp-content/uploads/2022/08/IMG20210407113813-1800x900-1.jpg",
     href: "#",
   },
 ];

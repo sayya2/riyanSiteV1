@@ -157,7 +157,7 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="relative h-[40vh] overflow-hidden rounded-lg group cursor-pointer">
             <Image
-              src="http://beta.riyan.com.mv/wp-content/uploads/2018/12/IAS-FINAL-1024x568-1.jpg"
+              src="/wp-content/uploads/2018/12/IAS-FINAL-1024x568-1.jpg"
               alt="Buildings"
               fill
               className="object-cover transition-transform duration-300"
@@ -172,7 +172,7 @@ export default async function AboutPage() {
 
           <div className="relative h-[40vh] overflow-hidden rounded-lg group cursor-pointer">
             <Image
-              src="http://beta.riyan.com.mv/wp-content/uploads/2009/01/Pic-13-Park-Hyatt-rotated.jpg"
+              src="/wp-content/uploads/2009/01/Pic-13-Park-Hyatt-rotated.jpg"
               alt="Resorts"
               fill
               className="object-cover transition-transform duration-300"
@@ -189,7 +189,7 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="relative h-[40vh] overflow-hidden rounded-lg group cursor-pointer">
             <Image
-              src="http://beta.riyan.com.mv/wp-content/uploads/2007/02/mpl.jpg"
+              src="/wp-content/uploads/2007/02/mpl.jpg"
               alt="Infrastructure"
               fill
               className="object-cover transition-transform duration-300"
@@ -204,7 +204,7 @@ export default async function AboutPage() {
 
           <div className="relative h-[40vh] overflow-hidden rounded-lg group cursor-pointer">
             <Image
-              src="http://beta.riyan.com.mv/wp-content/uploads/2021/09/bodufolhadhoo-LUP-1.jpg"
+              src="/wp-content/uploads/2021/09/bodufolhadhoo-LUP-1.jpg"
               alt="Urban Planning"
               fill
               className="object-cover transition-transform duration-300"
@@ -219,7 +219,7 @@ export default async function AboutPage() {
 
           <div className="relative h-[40vh] overflow-hidden rounded-lg group cursor-pointer">
             <Image
-              src="https://beta.riyan.com.mv/wp-content/uploads/2022/08/IMG20210407113813-1800x900-1.jpg"
+              src="/wp-content/uploads/2022/08/IMG20210407113813-1800x900-1.jpg"
               alt="Research"
               fill
               className="object-cover transition-transform duration-300"
