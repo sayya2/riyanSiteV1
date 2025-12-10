@@ -19,6 +19,11 @@ const robotoCondensed = Roboto_Condensed({
 export const metadata: Metadata = {
   title: "Riyan",
   description: "Riyan - Professional Services",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
