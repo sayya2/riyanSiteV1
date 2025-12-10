@@ -26,7 +26,7 @@ export function parseCareerSections(html: string): CareerSections {
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "");
 
-  const descriptionMatch = beforeFirstH2.match(/<p[^>]*>(.*?)<\/p>/is);
+  const descriptionMatch = beforeFirstH2.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
   if (descriptionMatch && stripHtml(descriptionMatch[1]).length > 20) {
     sections.description = `<p>${descriptionMatch[1]}</p>`;
   }
@@ -66,7 +66,7 @@ export function parseCareerSections(html: string): CareerSections {
       // Check if benefits are embedded in responsibilities
       // Look for the specific pattern: "...Director. Salary and Benefits</li>"
       // Use non-greedy match and check each li separately
-      const listItems = content.match(/<li[^>]*>.*?<\/li>/gs) || [];
+      const listItems = content.match(/<li[^>]*>[\s\S]*?<\/li>/g) || [];
 
       let benefitsStartIndex = -1;
       let benefitsMarkerItem = '';

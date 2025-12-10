@@ -471,10 +471,11 @@ export async function getProjectBySlug(
 
   const meta: ProjectMeta = {};
   for (const row of metaRows as any[]) {
-    if (row.meta_key === "services") {
+    const key = row.meta_key as keyof ProjectMeta;
+    if (key === "services") {
       meta.services = parseSerializedArray(row.meta_value as string);
-    } else {
-      meta[row.meta_key as keyof ProjectMeta] = row.meta_value as string;
+    } else if (key === "client" || key === "year" || key === "location") {
+      meta[key] = (row.meta_value as string) ?? "";
     }
   }
 
@@ -651,6 +652,8 @@ export async function getNewsPosts({
     post_content: row.post_content,
     post_name: row.post_name,
     post_date: row.post_date,
+    post_type: "post",
+    post_status: "publish",
     thumbnail_url: row.thumbnail_url,
     categories: row.categories ? (row.categories as string).split(",") : [],
     tags: row.tags ? (row.tags as string).split(",") : [],
@@ -747,6 +750,8 @@ export async function getNewsBySlug(slug: string): Promise<NewsPost | null> {
     post_content: article.post_content,
     post_name: article.post_name,
     post_date: article.post_date,
+    post_type: "post",
+    post_status: "publish",
     thumbnail_url: article.thumbnail_url,
     categories: categoryRows.map((r) => r.name as string),
     tags: tagRows.map((r) => r.name as string),

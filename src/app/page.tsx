@@ -5,6 +5,9 @@ import Hero from "../components/hero";
 import AboutSection from "../components/sections/aboutSection";
 import KeySectors from "../components/sections/keySectors";
 import LatestNewsSection from "../components/sections/latestNews";
+
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <main className="min-h-screen">

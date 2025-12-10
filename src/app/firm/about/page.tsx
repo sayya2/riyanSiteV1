@@ -10,6 +10,8 @@ export const metadata = {
     "Founded in 1997, Riyan Pvt. Ltd. is a leading multi-disciplinary consultancy firm based in the Maldives.",
 };
 
+export const dynamic = "force-dynamic";
+
 const contentShell = "w-full mx-auto px-[10%]";
 
 export default async function AboutPage() {
