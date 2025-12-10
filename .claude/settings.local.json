@@ -28,7 +28,9 @@
       "Bash(git rm:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git filter-branch:*)"
+      "Bash(git filter-branch:*)",
+      "Bash(java -jar bfg.jar:*)",
+      "Bash(git branch:*)"
     ],
     "deny": [],
     "ask": []
