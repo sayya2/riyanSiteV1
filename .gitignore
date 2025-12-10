@@ -50,3 +50,7 @@ backups/
 # Misc
 .turbo
 nul
+
+# Documentation (exclude from production repo)
+*.md
+!README.md
