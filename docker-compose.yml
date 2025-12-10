@@ -7,8 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: riyan_nextjs
-      MYSQL_USER: riyan_user
-      MYSQL_PASSWORD: riyan_password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: Riyanitaccess@26+
     ports:
       - "3307:3306"
     volumes:
@@ -33,11 +33,11 @@ services:
     environment:
       - NODE_ENV=production
       - DB_HOST=mariadb
-      - DB_USER=riyan_user
-      - DB_PASSWORD=riyan_password
+      - DB_USER=user
+      - DB_PASSWORD=Riyanitaccess@26+
       - DB_NAME=riyan_nextjs
       - DB_PORT=3306
-      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+      - NEXT_PUBLIC_SITE_URL=https://riyan.com.mv
     volumes:
       - ./wp-content:/app/public/wp-content
     depends_on:
