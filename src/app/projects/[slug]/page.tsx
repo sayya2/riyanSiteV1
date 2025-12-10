@@ -71,7 +71,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const shareUrl = `${siteUrl}/projects/${slug}`;
   const shareText = project.post_title;
-  const statIcons: Record<string, JSX.Element> = {
+  const statIcons: Record<string, React.ReactElement> = {
     Client: <Building2 className="h-5 w-5" />,
     Year: <CalendarClock className="h-5 w-5" />,
     Location: <MapPin className="h-5 w-5" />,

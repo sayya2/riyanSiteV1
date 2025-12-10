@@ -32,7 +32,8 @@
       "Bash(java -jar bfg.jar:*)",
       "Bash(git branch:*)",
       "Bash(xargs:*)",
-      "Bash(git count-objects:*)"
+      "Bash(git count-objects:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
