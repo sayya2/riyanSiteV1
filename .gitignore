@@ -50,6 +50,10 @@ backups/
 # Misc
 .turbo
 nul
+*.jar
+bfg-*.jar
+.bfg-report/
+delete-blobs.txt
 
 # Documentation (exclude from production repo)
 *.md
