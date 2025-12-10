@@ -9,8 +9,8 @@ const navLinks = [
 ];
 
 const isoBadges = [
-  "http://localhost/riyansite/wp-content/uploads/2021/05/ISO-CERTIFIED-LOGO1.png",
-  "http://localhost/riyansite/wp-content/uploads/2021/05/ISO-CERTIFIED-LOGO1.png",
+  "http://beta.riyan.com.mv/wp-content/uploads/2021/05/ISO-CERTIFIED-LOGO1.png",
+  "http://beta.riyan.com.mv/wp-content/uploads/2021/05/ISO-CERTIFIED-LOGO1.png",
 ];
 
 const Footer = () => {

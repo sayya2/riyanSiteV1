@@ -8,7 +8,9 @@ import {
 import FiltersBar from "@/components/FiltersBar";
 
 const fallbackImg =
-  "http://localhost/riyansite/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+  "http://beta.riyan.com.mv/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+
+const contentShell = "w-full mx-auto px-[10%]";
 
 function stripHtml(input: string) {
   return input
@@ -70,16 +72,15 @@ export default async function ProjectsPage({
   }
 
   return (
-    <main className="min-h-screen bg-white ml-[10%] mr-[10%]">
-      <div className="container mx-auto px-4 mt-10 py-16 space-y-10">
+    <main className="min-h-screen bg-white">
+      <div className={`${contentShell} py-16 space-y-10 mt-30`}>
         <div className="flex flex-col gap-6">
           <div>
             <h1 className="text-4xl md:text-5xl font-semibold text-gray-900">
               Projects
             </h1>
-            <p className="text-gray-700 mt-2">
-              Browse our portfolio across buildings, resorts, infrastructure,
-              planning, and more.
+            <p className="text-gray-700 mt-2 max-w-2xl">
+              Explore completed and ongoing work across buildings, resorts, infrastructure, and planning.
             </p>
           </div>
           <FiltersBar

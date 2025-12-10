@@ -10,7 +10,21 @@
       "Bash(sc query:*)",
       "Bash(dir \"D:\\Xaamp\\mysql\\data\\*.err\" /b)",
       "Bash(node:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(Get-Process)",
+      "Bash(Where-Object {$_rocessName -like \"*node*\"})",
+      "Bash(Select-Object Id,ProcessName,Path)",
+      "Bash(Format-Table:*)",
+      "Bash(docker exec:*)",
+      "Bash(dir:*)",
+      "Bash(where:*)",
+      "Bash(where mutool:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(npm run dev:db-query:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -10,6 +9,7 @@ import {
   Phone,
   Send,
 } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import { firmPages } from "../_components/FirmPage";
 
 const contactChannels = [
@@ -51,43 +51,19 @@ export const metadata = {
 };
 
 export default function ContactPage() {
-  return (
-    <main className="min-h-screen bg-white ">
-      <section className="relative h-[78vh] w-full overflow-hidden rounded-3xl">
-        <Image
-          src="/images/about-hero.png"
-          alt="Contact Riyan"
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="container mx-auto px-4 pb-10 space-y-4">
-            <p className="text-xs uppercase tracking-[0.35em] text-white/70">
-              Firm - Contact
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white max-w-4xl">
-              Let's build places that endure.
-            </h1>
-            <p className="text-lg text-white/80 max-w-3xl">
-              Dedicated design, engineering, and research teams based in the
-              Maldives, ready to partner on your next project.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <span className="text-xs uppercase tracking-[0.25em] text-white/80 bg-white/10 border border-white/20 px-4 py-2 rounded-full">
-                Response within 1 business day
-              </span>
-              <span className="text-xs uppercase tracking-[0.25em] text-white/80 bg-white/10 border border-white/20 px-4 py-2 rounded-full">
-                Male, Maldives
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
+  const contentShell = "w-full mx-auto px-[10%]";
 
-      <section className="container mx-auto px-4 -mt-12 md:-mt-16 pt-12 relative z-10 ">
+  return (
+    <main className="min-h-screen bg-white">
+      <PageHero
+        title="Let's build places that endure."
+        eyebrow="Contact"
+        description="Dedicated design, engineering, and research teams based in the Maldives, ready to partner on your next project."
+        imageUrl="http://beta.riyan.com.mv/wp-content/uploads/2015/05/13-1600x900-1.jpg"
+        heightClass="min-h-[60vh] md:min-h-[80vh]"
+      />
+
+      <section className={`${contentShell} -mt-10 md:-mt-7 relative z-10`}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {contactChannels.map((channel) => {
             const Icon = channel.icon;
@@ -99,6 +75,10 @@ export default function ContactPage() {
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noreferrer" : undefined}
                 className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-md hover:shadow-xl transition-shadow duration-300"
+              style={{
+                clipPath:
+                  "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
+              }}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-3">
@@ -123,7 +103,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-16 md:py-20 space-y-12">
+      <section className={`${contentShell} py-16 md:py-20 space-y-12`}>
         <div className="grid lg:grid-cols-2 gap-10 items-start">
           <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-8 space-y-6">
             <div className="flex items-center justify-between gap-4">
@@ -230,7 +210,7 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-white font-semibold shadow-md hover:bg-[#6d1f1d] transition-colors"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-white font-semibold shadow-md hover:bg-[#5f0e0f] transition-colors"
                 >
                   Send message
                   <Send className="h-4 w-4" />

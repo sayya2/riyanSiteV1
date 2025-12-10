@@ -14,7 +14,7 @@ const KeySectors = () => {
           <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">
             Key Sectors
           </h2>
-          <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+          <p className="text-lg text-gray-700">
             {keySectorsIntro}
           </p>
         </div>

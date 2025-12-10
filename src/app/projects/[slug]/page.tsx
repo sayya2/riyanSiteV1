@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import PageHero from "@/components/PageHero";
+import { Building2, CalendarClock, MapPin } from "lucide-react";
 import { getAdjacentProjects, getProjectBySlug } from "@/lib/db";
 
 const fallbackImg =
-  "http://localhost/riyansite/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+  "http://beta.riyan.com.mv/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+
+const contentShell = "w-full mx-auto px-[10%]";
 
 const stripHtml = (input: string) =>
   input
@@ -66,6 +70,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const shareUrl = `${siteUrl}/projects/${slug}`;
   const shareText = project.post_title;
+  const statIcons: Record<string, JSX.Element> = {
+    Client: <Building2 className="h-5 w-5" />,
+    Year: <CalendarClock className="h-5 w-5" />,
+    Location: <MapPin className="h-5 w-5" />,
+  };
   const shareLinks = [
     {
       label: "X",
@@ -134,49 +143,45 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <main className="min-h-screen bg-white ml-[10%] mr-[10%]">
-      <div className="relative  min-h-lvh md:h-[420px] w-full overflow-hidden">
-        <Image
-          src={img}
-          alt={project.post_title}
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="container mx-auto px-4 pb-10 space-y-2">
-            <p className="text-xs uppercase tracking-[0.35em] text-white/70">
-              {categoriesText || servicesText || "Project"}
-            </p>
-            <h1 className="text-4xl md:text-5xl font-semibold text-white">
-              {project.post_title}
-            </h1>
-            <div className="grid gap-4 md:grid-cols-3">
-              {stats.map((item) => (
-                <div
-                  key={item.label}
-                  className="relative overflow-hidden  bg-white/10 backdrop-blur-sm rounded-xl p-4    shadow-sm px-4 py-5"
-                  style={{
-                    clipPath:
-                      "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
-                  }}
-                >
-                  <p className="text-xs uppercase tracking-[0.2em] text-gray-100">
+    <main className="min-h-screen bg-white">
+      <PageHero
+        title={project.post_title}
+        eyebrow={categoriesText || servicesText || "Project"}
+        description={lead}
+        imageUrl={img}
+        heightClass="min-h-[60vh] md:min-h-[80vh]"
+      />
+
+      <section className={`${contentShell} -mt-10 md:-mt-7 relative z-10`}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {stats.map((item) => (
+            <div
+              key={item.label}
+              className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-md hover:shadow-xl transition-shadow duration-300"
+              style={{
+                clipPath:
+                  "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
+              }}
+            >
+              <div className="flex items-start gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  {statIcons[item.label] || <Building2 className="h-5 w-5" />}
+                </span>
+                <div className="space-y-1">
+                  <p className="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold">
                     {item.label}
                   </p>
-                  <p className="mt-2 text-xl font-semibold text-white">
+                  <p className="text-lg font-semibold text-gray-900 leading-snug">
                     {item.value}
                   </p>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      </div>
+      </section>
 
-      <section className="container mx-auto px-4 py-12 space-y-10">
+      <section className={`${contentShell} py-12 space-y-10`}>
         <div className="grid lg:grid-cols-[2fr,1fr] gap-10">
           <article className="space-y-6">
             {lead ? (

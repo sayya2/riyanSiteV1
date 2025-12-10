@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPageBySlug } from "@/lib/db";
+import PageHero from "@/components/PageHero";
 
 const fallbackImg = "/images/about-hero.png";
+const contentShell = "w-full mx-auto px-[10%]";
 
 export const firmPages = [
   { path: "about", slug: "about", label: "About" },
@@ -26,6 +27,10 @@ export async function FirmPageBySlug({
   children,
   hideContent = false,
   hideHero = false,
+  heroImageOverride,
+  heroDescriptionOverride,
+  heroHeightClass,
+  heroEyebrow,
 }: {
   slug: string;
   currentPath: string;
@@ -33,6 +38,10 @@ export async function FirmPageBySlug({
   children?: ReactNode;
   hideContent?: boolean;
   hideHero?: boolean;
+  heroImageOverride?: string;
+  heroDescriptionOverride?: string;
+  heroHeightClass?: string;
+  heroEyebrow?: string;
 }) {
   const page = await getPageBySlug(slug);
 
@@ -56,32 +65,31 @@ export async function FirmPageBySlug({
   const title = titleOverride || page.post_title;
 
   const navLinks = firmPages.filter((link) => link.path !== currentPath);
+  const heroImage = heroImageOverride || img;
+  const heroDescription = heroDescriptionOverride || lead;
+  const eyebrow = heroEyebrow || "Firm";
+  const heroHeight = heroHeightClass || "min-h-[60vh] md:min-h-[80vh]";
+
+  const showArticle = !hideContent || (lead && hideHero);
 
   return (
-    <main className="min-h-screen bg-white ml-[10%] mr-[10%]">
+    <main className="min-h-screen bg-white">
       {!hideHero ? (
-        <div className="full-bleed relative min-h-[240px] md:h-[320px] lg:h-[420px] w-full overflow-hidden">
-          <Image src={img} alt={title} fill className="object-cover" sizes="100vw" priority />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-          <div className="absolute inset-0 flex items-end">
-            <div className="container mx-auto px-4 pb-8 md:pb-10 space-y-2 md:space-y-3">
-              <p className="text-xs uppercase tracking-[0.35em] text-white/70">Firm</p>
-              <h1 className="text-4xl md:text-5xl font-semibold text-white">{title}</h1>
-            </div>
-          </div>
-        </div>
+        <PageHero title={title} eyebrow={eyebrow} description={heroDescription} imageUrl={heroImage} heightClass={heroHeight} />
       ) : null}
 
-      <section className="container mx-auto px-4 py-12 space-y-10">
-        <article className="space-y-6 max-w-5xl">
-          {lead ? <p className="text-lg text-gray-700 leading-relaxed">{lead}</p> : null}
-          {!hideContent ? (
-            <div
-              className="prose prose-lg max-w-none text-gray-800"
-              dangerouslySetInnerHTML={{ __html: page.post_content || "" }}
-            />
-          ) : null}
-        </article>
+      <section className={`${contentShell} py-12 space-y-10`}>
+        {showArticle ? (
+          <article className="space-y-6 max-w-5xl">
+            {lead && hideHero ? <p className="text-lg text-gray-700 leading-relaxed">{lead}</p> : null}
+            {!hideContent ? (
+              <div
+                className="prose prose-lg max-w-none text-gray-800"
+                dangerouslySetInnerHTML={{ __html: page.post_content || "" }}
+              />
+            ) : null}
+          </article>
+        ) : null}
 
         {children ? <div className="pt-10 max-w-6xl w-full">{children}</div> : null}
 
@@ -90,7 +98,7 @@ export async function FirmPageBySlug({
             <Link
               key={link.path}
               href={`/firm/${link.path}`}
-              className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-gray-800 font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center object-contain rounded-full border border-gray-200 bg-white px-4 py-2 text-gray-800 font-semibold hover:bg-gray-100 transition-colors"
             >
               {link.label}
             </Link>

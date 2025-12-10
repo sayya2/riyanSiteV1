@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #832926;
-  --color-secondary: #242935;
-  --color-accent: #832926;
+  --color-primary: #781213;
+  --color-secondary: #0c2e3f;
+  --color-accent: #781213;
+  --color-ivory: #fffcee;
+  --color-gray: #cccdc5;
    --animate-wiggle-right: wiggle 1s ease-in-out infinite;
-  
+
 }
 
 :root {

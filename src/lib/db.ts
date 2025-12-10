@@ -1180,3 +1180,38 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
     url: row.guid as string,
   }));
 }
+
+export async function getGalleryImages(limit: number = 40): Promise<string[]> {
+  const [rows] = await pool.query<any[]>(
+    `
+      SELECT guid
+      FROM wp_posts
+      WHERE post_type = 'attachment'
+        AND post_mime_type LIKE 'image/%'
+        AND guid IS NOT NULL
+        AND guid != ''
+      ORDER BY RAND()
+      LIMIT ?
+    `,
+    [limit]
+  );
+
+  return (rows as any[]).map((row) => row.guid as string).filter(Boolean);
+}
+
+export async function getAboutCarouselImages(): Promise<string[]> {
+  const [rows] = await pool.query<any[]>(
+    `
+      SELECT guid
+      FROM wp_posts
+      WHERE post_type = 'attachment'
+        AND post_mime_type LIKE 'image/%'
+        AND guid LIKE '%/about_carousel/%'
+        AND guid IS NOT NULL
+        AND guid != ''
+      ORDER BY post_title ASC
+    `
+  );
+
+  return (rows as any[]).map((row) => row.guid as string).filter(Boolean);
+}

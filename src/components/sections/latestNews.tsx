@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getPosts } from "@/lib/db";
 
 const fallbackImg =
-  "http://localhost/riyansite/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+  "http://beta.riyan.com.mv/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
 
 function stripHtml(input: string) {
   return input.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();

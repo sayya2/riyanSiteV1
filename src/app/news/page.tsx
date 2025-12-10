@@ -4,7 +4,9 @@ import { getNewsCategories, getNewsPosts } from "@/lib/db";
 import FiltersBarNews from "@/components/news/FiltersBarNews";
 
 const fallbackImg =
-  "http://localhost/riyansite/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+  "http://beta.riyan.com.mv/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+
+const contentShell = "w-full mx-auto px-[10%]";
 
 function stripHtml(input: string) {
   return input
@@ -64,16 +66,15 @@ export default async function NewsPage({
   }
 
   return (
-    <main className="min-h-screen bg-white ml-[10%] mr-[10%]">
-      <div className="container mx-auto px-4 mt-10 py-16 space-y-10">
+    <main className="min-h-screen bg-white">
+      <div className="w-full mx-auto px-[10%] py-16 space-y-10 mt-30">
         <div className="flex flex-col gap-6">
           <div>
             <h1 className="text-4xl md:text-5xl font-semibold text-gray-900">
               News &amp; Updates
             </h1>
-            <p className="text-gray-700 mt-2">
-              Stay up to date with announcements, milestones, and insights from
-              Riyan.
+            <p className="text-gray-700 mt-2 max-w-2xl">
+              Browse articles, announcements, and press from our multidisciplinary teams.
             </p>
           </div>
 

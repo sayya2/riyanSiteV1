@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import { AboutSection as AboutContent } from "@/data/Data";
-import { aboutGalleryImages } from "@/data/gallery";
+import { getAboutCarouselImages } from "@/lib/db";
 
-const AboutSection = () => {
-  const leftImages = [...aboutGalleryImages.filter((_, i) => i % 2 === 0), ...aboutGalleryImages.filter((_, i) => i % 2 === 0)]
-    .sort(() => Math.random() - 0.5);
-  const rightImages = [...aboutGalleryImages.filter((_, i) => i % 2 === 1), ...aboutGalleryImages.filter((_, i) => i % 2 === 1)]
-    .sort(() => Math.random() - 0.5);
+const AboutSection = async () => {
+  const carouselImages = await getAboutCarouselImages();
+  // Duplicate images to create continuous scroll effect
+  const leftImages = [...carouselImages.filter((_, i) => i % 2 === 0), ...carouselImages.filter((_, i) => i % 2 === 0)];
+  const rightImages = [...carouselImages.filter((_, i) => i % 2 === 1), ...carouselImages.filter((_, i) => i % 2 === 1)];
 
   return (
     <section className="py-24 bg-gray-50">

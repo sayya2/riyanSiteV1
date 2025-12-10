@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import PageHero from "@/components/PageHero";
 import { getAdjacentNews, getNewsBySlug } from "@/lib/db";
 
 const fallbackImg =
-  "http://localhost/riyansite/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
+  "http://beta.riyan.com.mv/wp-content/uploads/about_gallery/1_Collaboration-Space.jpg";
 
 const stripHtml = (input: string) =>
   input
@@ -16,6 +17,8 @@ type PageProps = {
 };
 
 export const dynamic = "force-dynamic";
+
+const contentShell = "w-full mx-auto px-[10%]";
 
 export default async function NewsDetailPage({ params }: PageProps) {
   const resolvedParams =
@@ -120,22 +123,16 @@ export default async function NewsDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <main className="min-h-screen bg-white ml-[10%] mr-[10%]">
-      <div className="relative min-h-lvh md:h-[420px] w-full overflow-hidden">
-        <Image src={img} alt={article.post_title} fill className="object-cover" sizes="100vw" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="container mx-auto px-4 pb-10 space-y-2">
-            <p className="text-xs uppercase tracking-[0.35em] text-white/70">
-              {categoriesText || "News"}
-            </p>
-            <h1 className="text-4xl md:text-5xl font-semibold text-white">{article.post_title}</h1>
-            <p className="text-sm text-white/80">{published}</p>
-          </div>
-        </div>
-      </div>
+    <main className="min-h-screen bg-white">
+      <PageHero
+        title={article.post_title}
+        eyebrow={categoriesText || "News"}
+        description={lead || published}
+        imageUrl={img}
+        heightClass="min-h-[65vh] md:min-h-[85vh]"
+      />
 
-      <section className="container mx-auto px-4 py-12 space-y-10">
+      <section className={`${contentShell} py-12 space-y-10`}>
         <div className="grid lg:grid-cols-[2fr,1fr] gap-10">
           <article className="space-y-6">
             {lead ? <p className="text-lg text-gray-700 leading-relaxed">{lead}</p> : null}

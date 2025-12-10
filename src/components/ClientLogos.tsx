@@ -95,7 +95,7 @@ export default function ClientLogos({ logos }: ClientLogosProps) {
             onClick={() => setActiveTab(category)}
             className={`pb-3 px-2 text-base font-medium transition-colors border-b-2 ${
               activeTab === category
-                ? "border-[#832926] text-[#832926]"
+                ? "border-[#781213] text-[#781213]"
                 : "border-transparent text-gray-600 hover:text-gray-900"
             }`}
           >

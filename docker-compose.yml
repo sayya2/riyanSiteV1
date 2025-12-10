@@ -23,6 +23,33 @@ services:
       timeout: 5s
       retries: 5
 
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: riyan_web
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mariadb
+      - DB_USER=riyan_user
+      - DB_PASSWORD=riyan_password
+      - DB_NAME=riyan_nextjs
+      - DB_PORT=3306
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - riyan_network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
 networks:
   riyan_network:
     driver: bridge
