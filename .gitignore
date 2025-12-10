@@ -14,7 +14,7 @@ build/
 coverage/
 wp-content/
 
-
+*.yml
 # Production
 .vercel
 
