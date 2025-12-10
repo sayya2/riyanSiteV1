@@ -24,7 +24,11 @@
       "Bash(python:*)",
       "Bash(pip install:*)",
       "Bash(npm run dev:db-query:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git filter-branch:*)"
     ],
     "deny": [],
     "ask": []
