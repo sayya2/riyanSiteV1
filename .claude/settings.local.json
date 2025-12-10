@@ -30,7 +30,9 @@
       "Bash(git commit:*)",
       "Bash(git filter-branch:*)",
       "Bash(java -jar bfg.jar:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(xargs:*)",
+      "Bash(git count-objects:*)"
     ],
     "deny": [],
     "ask": []
